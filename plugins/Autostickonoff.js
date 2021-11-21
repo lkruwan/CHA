@@ -41,14 +41,14 @@ let baseURI = '/apps/' + config.HEROKU.APP_NAME;
         if (match[1] == 'off') {
                 await heroku.patch(baseURI + '/config-vars', { 
                     body: { 
-                        ['AUTO_REPLY']: 'false'
+                        ['STICKER_REPLY']: 'false'
                     } 
                 });
                 await message.sendMessage(YT_INFO_off)
         } else if (match[1] == 'on') {
                 await heroku.patch(baseURI + '/config-vars', { 
                     body: { 
-                        ['AUTO_REPLY']: 'true'
+                        ['STICKER_REPLY']: 'true'
                     } 
                 });
                 await message.sendMessage(YT_INFO_on)
