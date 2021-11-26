@@ -42,7 +42,7 @@ lusifar.addCommand({pattern: 'isupdate$', fromMe: true, dontAddCommandList: true
 
 
         await message.client.sendMessage(message.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: degisiklikler + '```' })
-        ); 
+        
     }
     
     
