@@ -151,7 +151,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
 
     if (config.WORKTYPE == 'public') {
         if (config.LANG == 'SI' || config.LANG == 'AZ') {
-            if (config.BRANCH == 'master') {
+            if (config.BRANCH == 'lunch') {
                 await conn.sendMessage(conn.user.jid, EVA_ACTİON, MessageType.text)
             } else {
                 await conn.sendMessage(conn.user.jid, '*🧚‍♂QUEEN AMAZONE As Public! 👩‍🦰*\n\n_මෙය ඔබගේ LOG අංකයයි..මෙහි විධාන භාවිතයෙන් වළකින්න._\n_ඔබට පුලුවන් වෙනත් ඕනෑම කතා බහක විධාන භාවිතා කිරීමට.. :)_\n\n*ඔබේ Bot Public ආකාරයට ක්‍රියා කරයි..එය වෙනස් කිරීමට* _.setvar WORK_TYPE:private_ *විධානය භාවිතා කරන්න.*\n\n*Bot ක්‍රියාත්මක වන්නෙ කෙසේද හා විධාන ලැයිස්තු ලබා ගැනීමට⚜ .basichelp විධානය භාවිතා කරන්න*\n\nSupport Group : https://t.me/Amazone_Neotrox_Support\n*🧚‍♂QUEEN AMAZONE භාවිතා කිරීම සම්බන්ධයෙන් ස්තූතියි 💌*', MessageType.text);
@@ -177,7 +177,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
             }
         }
         else { 
-            if (config.BRANCH == 'master') {
+            if (config.BRANCH == 'lunch') {
                 await conn.sendMessage(conn.user.jid, EVA_ACTİON, MessageType.text)
             } else {
                 await conn.sendMessage(conn.user.jid, '*🧚‍♂QUEEN AMAZONE Working As public!👩‍🦰*\n\nPlease do not try any commands here. This is your log number._\n_You can try commands anywhere else :)_\n\n_Type_ *.basichelp* _to get your full Help list and Basic Commands._\n\n_Your bot in Public Mode. To change, use_ ```.setvar WORK_TYPE:private``` _command._\n\n*Thanks for using 🧚‍♂QUEEN AMAZONE💌*\n', MessageType.text);
@@ -206,7 +206,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
     }
     else if (config.WORKTYPE == 'private') { 
         if (config.LANG == 'SI' || config.LANG == 'AZ') { 
-            if (config.BRANCH == 'master') {
+            if (config.BRANCH == 'lunch') {
                 await conn.sendMessage(conn.user.jid, EVA_ACTİON, MessageType.text)
             } else {
                 await conn.sendMessage(conn.user.jid, '*🧚‍♂QUEEN AMAZONE As private! 👩‍🦰*\n\n_මෙය ඔබගේ LOG අංකයයි..මෙහි විධාන භාවිතයෙන් වළකින්න._\n_ඔබට පුලුවන් වෙනත් ඕනෑම කතා බහක විධාන භාවිතා කිරීමට.. :)_\n\n*ඔබේ Bot Private ආකාරයට ක්‍රියා කරයි..එය වෙනස් කිරීමට* _.setvar WORK_TYPE:public_ *විධානය භාවිතා කරන්න.*\n\n*Bot ක්‍රියාත්මක වන්නෙ කෙසේද හා විධාන ලැයිස්තු ලබා ගැනීමට⚜ .basichelp විධානය භාවිතා කරන්න*\n\nSupport Group : _https://t.me/Amazone_Neotrox_Support_\n*🧚‍♂QUEEN AMAZONE භාවිතා කිරීම සම්බන්ධයෙන් ස්තූතියි 💌*', MessageType.text);
@@ -232,7 +232,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
             }
         }
         else { 
-            if (config.BRANCH == 'master') {
+            if (config.BRANCH == 'lunch') {
                 await conn.sendMessage(conn.user.jid, EVA_ACTİON, MessageType.text)
             } else {
                 await conn.sendMessage(conn.user.jid, '*🧚‍♂QUEEN AMAZONE Working As private!👩‍🦰*\n\nPlease do not try any commands here. This is your log number._\n_You can try commands anywhere else :)_\n\n_Type_ *.basichelp* _to get your full Help list and Basic Commands._\n\n_Your bot in private  Mode. To change, use_ ```.setvar WORK_TYPE:public``` _command._\n\n*Thanks for using 🧚‍♂QUEEN AMAZONE💌*', MessageType.text);
