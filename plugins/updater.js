@@ -20,7 +20,7 @@ const Language = require('../language');
 const Lang = Language.getString('updater');
 
 const axios = require('axios');
-/*
+
 //පක ටහුකන්න ආවද සගෝස්
 lusifar.addCommand({pattern: 'isupdate$', fromMe: true, dontAddCommandList: true, desc: Lang.UPDATER_DESC}, (async (message, match) => {
     await git.fetch();
@@ -43,9 +43,9 @@ lusifar.addCommand({pattern: 'isupdate$', fromMe: true, dontAddCommandList: true
 
         await message.client.sendMessage(message.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: degisiklikler + '```' })
         
-    }*/
-    
-    
+    }
+ }));   
+ /*   
  //පක ටහුකන්න ආවද සගෝස්   
     lusifar.addCommand({pattern: 'haveup$', fromMe: true, dontAddCommandList: true, desc: Lang.UPDATER_DESC}, (async (message, match) => {
     await git.fetch();
@@ -71,7 +71,7 @@ lusifar.addCommand({pattern: 'isupdate$', fromMe: true, dontAddCommandList: true
     }
 }));
     
-    
+   */ 
 
 lusifar.addCommand({pattern: 'update$', fromMe: true, dontAddCommandList: true, desc: Lang.UPDATER_DESC}, (async (message, match) => {
     await git.fetch();
