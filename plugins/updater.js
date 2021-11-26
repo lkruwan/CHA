@@ -1,7 +1,7 @@
 
 /* Copyright (C) 2020 kavishka - lusifar.
 Licensed under the  GPL-3.0 License;
-you may not use this file except in compliance with the License.czxcz
+you may not use this file except in compliance with the License.FIX BY KAVIYAAH
 kavishka - lusifar
 */
 
