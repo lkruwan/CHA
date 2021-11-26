@@ -3,8 +3,10 @@
 RECODDED BY KAVISHKA
 */
 
-const os = require("os");
 const fs = require("fs");
+const os = require("os");
+const path = require("path");
+const Heroku = require('heroku-client');
 const path = require("path");
 const events = require("./events");
 const chalk = require('chalk');
@@ -15,6 +17,14 @@ const { DataTypes } = require('sequelize');
 const { GreetingsDB, getMessage } = require("./plugins/sql/greetings");
 const got = require('got');
 const axios = require('axios');
+const simpleGit = require('simple-git');
+const git = simpleGit();
+const exec = require('child_process').exec;
+const Heroku = require('heroku-client');
+const { PassThrough } = require('stream');
+const heroku = new Heroku({ token: Config.HEROKU.API_KEY })
+const Language = require('../language');
+const Lang = Language.getString('updater');
 
 // Sql
 const WhatsAsenaDB = config.DATABASE.define('WhatsAsena', {
@@ -138,6 +148,118 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
             await conn.sendMessage(conn.user.jid, "``` WORKING " + config.WORKTYPE + "```" , MessageType.text);
     });
     
+
+
+
+    if (config.WORKTYPE == 'public') {
+        if (config.LANG == 'SI' || config.LANG == 'AZ') {
+            if (config.BRANCH == 'master') {
+                await conn.sendMessage(conn.user.jid, EVA_ACTİON, MessageType.text)
+            } else {
+                await conn.sendMessage(conn.user.jid, '*🧚‍♂QUEEN AMAZONE As Public! 👩‍🦰*\n\n_මෙය ඔබගේ LOG අංකයයි..මෙහි විධාන භාවිතයෙන් වළකින්න._\n_ඔබට පුලුවන් වෙනත් ඕනෑම කතා බහක විධාන භාවිතා කිරීමට.. :)_\n\n*ඔබේ Bot Public ආකාරයට ක්‍රියා කරයි..එය වෙනස් කිරීමට* _.setvar WORK_TYPE:private_ *විධානය භාවිතා කරන්න.*\n\n*Bot ක්‍රියාත්මක වන්නෙ කෙසේද හා විධාන ලැයිස්තු ලබා ගැනීමට⚜ .basichelp විධානය භාවිතා කරන්න*\n\nSupport Group : https://t.me/Amazone_Neotrox_Support\n*🧚‍♂QUEEN AMAZONE භාවිතා කිරීම සම්බන්ධයෙන් ස්තූතියි 💌*', MessageType.text);
+            }
+            await git.fetch();
+            var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
+            if (commits.total === 0) {
+                await conn.sendMessage(
+                    conn.user.jid,
+                    Lang.UPDATE, MessageType.text
+                );    
+            } else {
+                var TEENU = Lang.NEW_UPDATE;
+                commits['all'].map(
+                    (commit) => {
+                        TEENU += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' ◁' + commit.author_name + '▷\n';
+                    }
+                );
+                await conn.sendMessage(
+                    conn.user.jid,
+                    '```🛡️යතාවත්කාලීන කිරීමට``` *.update now* ```භාවිතා කරන්න.```\n\n' + TEENU + '```', MessageType.text
+                ); 
+            }
+        }
+        else { 
+            if (config.BRANCH == 'master') {
+                await conn.sendMessage(conn.user.jid, EVA_ACTİON, MessageType.text)
+            } else {
+                await conn.sendMessage(conn.user.jid, '*🧚‍♂QUEEN AMAZONE Working As public!👩‍🦰*\n\nPlease do not try any commands here. This is your log number._\n_You can try commands anywhere else :)_\n\n_Type_ *.basichelp* _to get your full Help list and Basic Commands._\n\n_Your bot in Public Mode. To change, use_ ```.setvar WORK_TYPE:private``` _command._\n\n*Thanks for using 🧚‍♂QUEEN AMAZONE💌*\n', MessageType.text);
+            }               
+            await git.fetch();
+            var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
+            if (commits.total === 0) {
+                await conn.sendMessage(
+                    conn.user.jid,
+                    Lang.UPDATE, MessageType.text
+                );    
+            } else {
+                var TEENU = Lang.NEW_UPDATE;
+                commits['all'].map(
+                    (commit) => {
+                        TEENU += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' ◁' + commit.author_name + '▷\n';
+                    }
+                );
+    
+                await conn.sendMessage(
+                    conn.user.jid,
+                    '```🛡️Type``` *.update now* ```for update.```\n\n' + TEENU + '```', MessageType.text
+                ); 
+            }
+        }
+    }
+    else if (config.WORKTYPE == 'private') { 
+        if (config.LANG == 'SI' || config.LANG == 'AZ') { 
+            if (config.BRANCH == 'master') {
+                await conn.sendMessage(conn.user.jid, EVA_ACTİON, MessageType.text)
+            } else {
+                await conn.sendMessage(conn.user.jid, '*🧚‍♂QUEEN AMAZONE As private! 👩‍🦰*\n\n_මෙය ඔබගේ LOG අංකයයි..මෙහි විධාන භාවිතයෙන් වළකින්න._\n_ඔබට පුලුවන් වෙනත් ඕනෑම කතා බහක විධාන භාවිතා කිරීමට.. :)_\n\n*ඔබේ Bot Private ආකාරයට ක්‍රියා කරයි..එය වෙනස් කිරීමට* _.setvar WORK_TYPE:public_ *විධානය භාවිතා කරන්න.*\n\n*Bot ක්‍රියාත්මක වන්නෙ කෙසේද හා විධාන ලැයිස්තු ලබා ගැනීමට⚜ .basichelp විධානය භාවිතා කරන්න*\n\nSupport Group : _https://t.me/Amazone_Neotrox_Support_\n*🧚‍♂QUEEN AMAZONE භාවිතා කිරීම සම්බන්ධයෙන් ස්තූතියි 💌*', MessageType.text);
+            }
+            await git.fetch();
+            var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
+            if (commits.total === 0) {
+                await conn.sendMessage(
+                    conn.user.jid,
+                    Lang.UPDATE, MessageType.text
+                );    
+            } else {
+                var TEENU = Lang.NEW_UPDATE;
+                commits['all'].map(
+                    (commit) => {
+                        TEENU += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' ◁' + commit.author_name + '▷\n';
+                    }
+                );
+                await conn.sendMessage(
+                    conn.user.jid,
+                    '```යතාවත්කාලීන කිරීමට``` *.update now* ```භාවිතා කරන්න.```\n\n' + TEENU + '```', MessageType.text
+                ); 
+            }
+        }
+        else { 
+            if (config.BRANCH == 'master') {
+                await conn.sendMessage(conn.user.jid, EVA_ACTİON, MessageType.text)
+            } else {
+                await conn.sendMessage(conn.user.jid, '*🧚‍♂QUEEN AMAZONE Working As private!👩‍🦰*\n\nPlease do not try any commands here. This is your log number._\n_You can try commands anywhere else :)_\n\n_Type_ *.basichelp* _to get your full Help list and Basic Commands._\n\n_Your bot in private  Mode. To change, use_ ```.setvar WORK_TYPE:public``` _command._\n\n*Thanks for using 🧚‍♂QUEEN AMAZONE💌*', MessageType.text);
+            }
+            await git.fetch();
+            var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
+            if (commits.total === 0) {
+                await conn.sendMessage(
+                    conn.user.jid,
+                    Lang.UPDATE, MessageType.text
+                );    
+            } else {
+                var TEENU = Lang.NEW_UPDATE;
+                commits['all'].map(
+                    (commit) => {
+                        TEENU += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' ◁' + commit.author_name + '▷\n';
+                    }
+                );
+                await conn.sendMessage(
+                    conn.user.jid,
+                    '```🛡️යාවත්කාලීන කිරීමට``` *.update now* ````යොදන්න.```\n\n' + TEENU + '```', MessageType.text
+                ); 
+            }
+        }
+    }
     conn.on('chat-update', async m => {
         if (!m.hasNewMessage) return;
         if (!m.messages && !m.count) return;
