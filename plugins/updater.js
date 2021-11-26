@@ -20,7 +20,7 @@ const Language = require('../language');
 const Lang = Language.getString('updater');
 
 const axios = require('axios');
-
+/*
 //පක ටහුකන්න ආවද සගෝස්
 lusifar.addCommand({pattern: 'isupdate$', fromMe: true, dontAddCommandList: true, desc: Lang.UPDATER_DESC}, (async (message, match) => {
     await git.fetch();
@@ -43,10 +43,34 @@ lusifar.addCommand({pattern: 'isupdate$', fromMe: true, dontAddCommandList: true
 
         await message.client.sendMessage(message.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: degisiklikler + '```' })
         
-    }
+    }*/
     
     
  //පක ටහුකන්න ආවද සගෝස්   
+    lusifar.addCommand({pattern: 'haveup$', fromMe: true, dontAddCommandList: true, desc: Lang.UPDATER_DESC}, (async (message, match) => {
+    await git.fetch();
+    var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
+    if (commits.total === 0) {
+        await message.client.sendMessage(
+            message.jid,
+            Lang.UPDATE, MessageType.text
+        );    
+    } else {
+        commits['all'].map(
+            (commit) => {
+                newzel= '🔹 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
+            }
+        );
+        
+    var webimage = await axios.get(`https://telegra.ph/file/db327730246e6e142bd4e.jpg`, { responseType: 'arraybuffer' })
+
+
+        await message.client.sendMessage(message.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: "යූ හෑව් නිව් අප්ඩේට් සගෝ .update now ගහපම් අප්ඩේට් කරන්න"+ newzel })
+    
+      
+    }
+}));
+    
     
 
 lusifar.addCommand({pattern: 'update$', fromMe: true, dontAddCommandList: true, desc: Lang.UPDATER_DESC}, (async (message, match) => {
