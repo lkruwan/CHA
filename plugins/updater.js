@@ -21,7 +21,7 @@ const Lang = Language.getString('updater');
 const axios = require('axios');
 
 //පක ටහුකන්න ආවද සගෝස්
-lusifar.addCommand({pattern: 'isupdate$', fromMe: true, dontAddCommandList: true, desc: Lang.UPDATER_DESC}, (async (message, match) => {
+/*lusifar.addCommand({pattern: 'isupdate$', fromMe: true, dontAddCommandList: true, desc: Lang.UPDATER_DESC}, (async (message, match) => {
     await git.fetch();
     var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
     if (commits.total === 0) {
@@ -43,7 +43,43 @@ lusifar.addCommand({pattern: 'isupdate$', fromMe: true, dontAddCommandList: true
         await message.client.sendMessage(message.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: newzels + '```' })
         
     }
- }));   
+ }));   */
+
+
+
+var logoimage = new Array ();
+
+logoimage[0] = "https://telegra.ph/file/db327730246e6e142bd4e.jpg";
+logoimage[1] = "https://telegra.ph/file/e8f3e419b3dafe9fe8153.jpg";
+
+  var i = Math.floor(2*Math.random())
+
+  var uplogonew = logoimage[i]    
+
+lusifar.addCommand({pattern: 'supdate$', fromMe: true, dontAddCommandList: true, desc: Lang.UPDATER_DESC}, (async (message, match) => {
+    await git.fetch();
+    var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
+    if (commits.total === 0) {
+        await message.client.sendMessage(
+            message.jid,
+            Lang.UPDATE, MessageType.text
+        );    
+    } else {
+        var newzels = Lang.NEW_UPDATE;
+        commits['all'].map(
+            (commit) => {
+                newzels += '🔹 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' ◁◁' + commit.author_name + '▷▷\n';
+            }
+        );
+        
+        var webimage = await axios.get(`${uplogonew}`, { responseType: 'arraybuffer' })
+
+
+        await message.client.sendMessage(message.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: newzels + '```' })
+        
+    }
+ }));  
+
  /*   
  //පක ටහුකන්න ආවද සගෝස්   
     lusifar.addCommand({pattern: 'haveup$', fromMe: true, dontAddCommandList: true, desc: Lang.UPDATER_DESC}, (async (message, match) => {
