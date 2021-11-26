@@ -19,7 +19,6 @@ const axios = require('axios');
 const simpleGit = require('simple-git');
 const git = simpleGit();
 const exec = require('child_process').exec;
-const Heroku = require('heroku-client');
 const { PassThrough } = require('stream');
 const heroku = new Heroku({ token: Config.HEROKU.API_KEY })
 const Language = require('../language');
