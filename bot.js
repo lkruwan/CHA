@@ -173,7 +173,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
             var up_ch = await WhatsAsenaStack.update(config.LANG)
             await conn.sendMessage(conn.user.jid, degisiklikler +'```' , MessageType.text)
         }
-    })
+    }
    
   //පක ක්ලෝස්  
     
