@@ -10,7 +10,6 @@ const Heroku = require('heroku-client');
 const events = require("./events");
 const chalk = require('chalk');
 const config = require('./config');
-const awsh = require('./DEVELOPER_OPTION_DONT_EDITE_THIS_RESPECT_TO_OWNER');
 const simpleGit = require('simple-git');
 const git = simpleGit();
 const {WAConnection, MessageOptions, MessageType, Mimetype, Presence} = require('@adiwajshing/baileys');
