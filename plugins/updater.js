@@ -31,17 +31,17 @@ lusifar.addCommand({pattern: 'isupdate$', fromMe: true, dontAddCommandList: true
             Lang.UPDATE, MessageType.text
         );    
     } else {
-        var degisiklikler = Lang.NEW_UPDATE;
+        var newzels = Lang.NEW_UPDATE;
         commits['all'].map(
             (commit) => {
-                degisiklikler += '🔹 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
+                newzels += '🔹 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
             }
         );
         
         var webimage = await axios.get(`https://telegra.ph/file/db327730246e6e142bd4e.jpg`, { responseType: 'arraybuffer' })
 
 
-        await message.client.sendMessage(message.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: degisiklikler + '```' })
+        await message.client.sendMessage(message.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: newzels + '```' })
         
     }
  }));   
