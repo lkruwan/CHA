@@ -1,9 +1,8 @@
 
-/* Copyright (C) 2020 Yusuf Usta.
+/* Copyright (C) 2020 kavishka - lusifar.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-tzhukannak hari pasdadfasda
-WhatsAsena - Yusuf Usta
+kavishka - lusifar
 */
 
 const simpleGit = require('simple-git');
