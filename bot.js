@@ -21,7 +21,7 @@ const git = simpleGit();
 const exec = require('child_process').exec;
 const { PassThrough } = require('stream');
 const heroku = new Heroku({ token: config.HEROKU.API_KEY })
-const Language = require('../language');
+const Language = require('./language');
 const Lang = Language.getString('updater');
 
 // Sql
