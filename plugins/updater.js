@@ -19,7 +19,7 @@ const heroku = new Heroku({ token: Config.HEROKU.API_KEY })
 const Language = require('../language');
 const Lang = Language.getString('updater');
 
-
+const axios = require('axios');
 
 
 
@@ -62,7 +62,8 @@ MyPnky.addCommand({pattern: 'haveup$', fromMe: true, dontAddCommandList: true, d
             }
         );
         
-        var webimage = 'https://api.zeks.me/api/nulis?apikey=LUSIFARUSERbtokbro&text=lusifarupdates'
+    var webimage = await axios.get(`https://api.zeks.me/api/nulis?apikey=`+ apikey +`&text=${match[1]}`, { responseType: 'arraybuffer' })
+
 
         await message.client.sendMessage(message.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: newzel })
     
