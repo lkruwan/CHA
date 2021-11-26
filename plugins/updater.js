@@ -30,7 +30,7 @@ const Lang = Language.getString('updater');
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
 WhatsAsena - Yusuf Usta
-*/
+
 
 const simpleGit = require('simple-git');
 const git = simpleGit();
@@ -45,7 +45,7 @@ const heroku = new Heroku({ token: Config.HEROKU.API_KEY })
 const Language = require('../language');
 const Lang = Language.getString('updater');
 
-
+*/
 
 MyPnky.addCommand({pattern: 'haveup$', fromMe: true, dontAddCommandList: true, desc: Lang.UPDATER_DESC}, (async (message, match) => {
     await git.fetch();
