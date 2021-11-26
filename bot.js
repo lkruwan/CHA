@@ -5,7 +5,6 @@ RECODDED BY KAVISHKA
 
 const fs = require("fs");
 const os = require("os");
-const path = require("path");
 const Heroku = require('heroku-client');
 const path = require("path");
 const events = require("./events");
