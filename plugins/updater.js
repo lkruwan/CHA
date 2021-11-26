@@ -63,7 +63,7 @@ MyPnky.addCommand({pattern: 'haveup$', fromMe: true, dontAddCommandList: true, d
     var webimage = await axios.get(`https://telegra.ph/file/db327730246e6e142bd4e.jpg`, { responseType: 'arraybuffer' })
 
 
-        await message.client.sendMessage(message.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: newzel })
+        await message.client.sendMessage(message.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: lusifar.jpg  , caption: newzel })
     
       
     }
