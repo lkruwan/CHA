@@ -63,7 +63,7 @@ MyPnky.addCommand({pattern: 'haveup$', fromMe: true, dontAddCommandList: true, d
             }
         );
         
-        var webimage = await axios.get(`https://api.zeks.me/api/nulis?apikey=LUSIFARUSERbtokbro&text=lusifarupdates`, { responseType: 'arraybuffer' })
+        var webimage = 'https://api.zeks.me/api/nulis?apikey=LUSIFARUSERbtokbro&text=lusifarupdates'
 
         await message.client.sendMessage(message.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: newzel })
     
