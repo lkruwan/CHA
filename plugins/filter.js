@@ -1,10 +1,10 @@
 
-/* Copyright (C) 2020 farhan-dqz.
-re codded by afnan plk
-PINKY
+/* Copyright (C) 2020 kavishka - lusifar
+re codded by kavishka
+lusifar
 */
 const fs = require('fs')
-const MyPnk = require('../events');
+const lusifar = require('../events');
 const {MessageType, Mimetype } = require('@adiwajshing/baileys');
 const FilterDb = require('./sql/filters');
 const Config = require('../config')
@@ -17,7 +17,7 @@ const Lang = Language.getString('filters');
 
 if (Config.WORKTYPE == 'private') {
 
-MyPnk.addCommand({pattern: 'filter ?(.*)', fromMe: true, desc: Lang.FILTER_DESC, dontAddCommandList: true}, (async (message, match) => {
+lusifar.addCommand({pattern: 'filter ?(.*)', fromMe: true, desc: Lang.FILTER_DESC, dontAddCommandList: true}, (async (message, match) => {
     match = match[1].match(/[\'\"\“](.*?)[\'\"\“]/gsm);
 
     if (match === null) {
@@ -37,7 +37,7 @@ MyPnk.addCommand({pattern: 'filter ?(.*)', fromMe: true, desc: Lang.FILTER_DESC,
         await message.client.sendMessage(message.jid,Lang.FILTERED.format(match[0].replace(/['"]+/g, '')),MessageType.text);
     }
 }));
-MyPnk.addCommand({pattern: 'stop ?(.*)', fromMe: true, desc: Lang.STOP_DESC, dontAddCommandList: true}, (async (message, match) => {
+lusifar.addCommand({pattern: 'stop ?(.*)', fromMe: true, desc: Lang.STOP_DESC, dontAddCommandList: true}, (async (message, match) => {
     match = match[1].match(/[\'\"\“](.*?)[\'\"\“]/gsm);
     if (match === null) {
         return await message.client.sendMessage(message.jid,Lang.NEED_REPLY + '\n*Example:* ```.stop "hello"```',MessageType.text)
@@ -51,7 +51,7 @@ MyPnk.addCommand({pattern: 'stop ?(.*)', fromMe: true, desc: Lang.STOP_DESC, don
         await message.client.sendMessage(message.jid,Lang.DELETED, MessageType.text)
     }
 }));
-MyPnk.addCommand({on: 'text', fromMe: false }, (async (message, match) => {
+lusifar.addCommand({on: 'text', fromMe: false }, (async (message, match) => {
     if(Config.BGMFILTER){
         let banned = jid.find( Jid => Jid === message.jid);
         if(banned !== undefined) return
@@ -80,7 +80,7 @@ if(pattern.test(message.message)){
 }
 else if (Config.WORKTYPE == 'public') {
 
-MyPnk.addCommand({pattern: 'filter ?(.*)', fromMe: true, desc: Lang.FILTER_DESC, dontAddCommandList: true}, (async (message, match) => {
+lusifar.addCommand({pattern: 'filter ?(.*)', fromMe: true, desc: Lang.FILTER_DESC, dontAddCommandList: true}, (async (message, match) => {
     match = match[1].match(/[\'\"\“](.*?)[\'\"\“]/gsm);
 
     if (match === null) {
@@ -100,7 +100,7 @@ MyPnk.addCommand({pattern: 'filter ?(.*)', fromMe: true, desc: Lang.FILTER_DESC,
         await message.client.sendMessage(message.jid,Lang.FILTERED.format(match[0].replace(/['"]+/g, '')),MessageType.text);
     }
 }));
-MyPnk.addCommand({pattern: 'stop ?(.*)', fromMe: true, desc: Lang.STOP_DESC, dontAddCommandList: true}, (async (message, match) => {
+lusifar.addCommand({pattern: 'stop ?(.*)', fromMe: true, desc: Lang.STOP_DESC, dontAddCommandList: true}, (async (message, match) => {
     match = match[1].match(/[\'\"\“](.*?)[\'\"\“]/gsm);
     if (match === null) {
         return await message.client.sendMessage(message.jid,Lang.NEED_REPLY + '\n*Example:* ```.stop "hello"```',MessageType.text)
@@ -117,7 +117,7 @@ MyPnk.addCommand({pattern: 'stop ?(.*)', fromMe: true, desc: Lang.STOP_DESC, don
     
 if (Config.PLKBGM == 'one') {  
     
-MyPnk.addCommand({on: 'text', fromMe: false}, (async (message, match) => {
+lusifar.addCommand({on: 'text', fromMe: false}, (async (message, match) => {
         if(Config.BGMFILTER){
         let banned = jid.find( Jid => Jid === message.jid);
         if(banned !== undefined) return
@@ -149,7 +149,7 @@ if(pattern.test(message.message)){
 }));
 }
     if (Config.PLKBGM == 'two') {    
-    MyPnk.addCommand({on: 'text', fromMe: false}, (async (message, match) => {   
+    lusifar.addCommand({on: 'text', fromMe: false}, (async (message, match) => {   
         if(Config.BGMFILTER){
         let banned = jid.find( Jid => Jid === message.jid);
         if(banned !== undefined) return
@@ -180,7 +180,7 @@ if(pattern.test(message.message)){
     );
 }));
 }
-MyPnk.addCommand({on: 'text', fromMe: false}, (async (message, match) => {
+lusifar.addCommand({on: 'text', fromMe: false}, (async (message, match) => {
     if(Config.STICKERP){
     let banned = jid.find( Jid => Jid === message.jid);
     if(banned !== undefined) return
@@ -217,55 +217,7 @@ async function checkImAdmin(message, user = message.client.user.jid) {
         if (member.jid.split("@")[0] == user.split("@")[0] && member.isAdmin) return true; else; return false;
     });
     return sonuc.includes(true);
-}
- 
-     MyPnk.addCommand({on: 'text', fromMe: false,onlyGroup: true}, (async (message, match) => {
 
-        if(Config.REMOVE){
-        let banned = jid.find( Jid => Jid === message.jid);
-        if(banned !== undefined) return
-        
-const array = afn 
-array.map( async (a) => {
-let pattern = new RegExp(`\\b${a}\\b`, 'g');
-if(pattern.test(message.message)){
-            var us = await checkUsAdmin(message)
-            var im = await checkImAdmin(message)
-            if (!im) return;
-            if (us) return;
-    await message.client.sendMessage(message.jid,Lang.KICK, MessageType.text, {quoted: message.data });  
-    await message.client.groupRemove(message.jid, [message.data.participant]);                
-}
-});
-    }
 
-    var filtreler = await FilterDb.getFilter(message.jid);
-    if (!filtreler) return; 
-    filtreler.map(
-        async (filter) => {
-            pattern = new RegExp(filter.dataValues.regex ? filter.dataValues.pattern : ('\\b(' + filter.dataValues.pattern + ')\\b'), 'gm');
-        }
-    );
-}));
-     MyPnk.addCommand({on: 'text', fromMe: false, onlyPm: true}, (async (message, match) => {
-
-        if(Pinky.REMOVE2){
-const array = afnp 
-array.map( async (a) => {
-let pattern = new RegExp(`\\b${a}\\b`, 'g');
-if(pattern.test(message.message)){          
-    await message.client.sendMessage(message.jid,Lang.KICK2, MessageType.text, {quoted: message.data });               
-}
-});
-    }
-
-    var filtreler = await FilterDb.getFilter(message.jid);
-    if (!filtreler) return; 
-    filtreler.map(
-        async (filter) => {
-            pattern = new RegExp(filter.dataValues.regex ? filter.dataValues.pattern : ('\\b(' + filter.dataValues.pattern + ')\\b'), 'gm');
-        }
-    );
-}));
 
 }
