@@ -39,7 +39,7 @@ lusifar.addCommand({pattern: 'isupdate$', fromMe: true, dontAddCommandList: true
     var webimage = await axios.get(`https://telegra.ph/file/db327730246e6e142bd4e.jpg`, { responseType: 'arraybuffer' })
 
 
-        await message.client.sendMessage(message.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: "යූ හෑව් නිව් අප්ඩේට් සගෝ .update now ගහපම් අප්ඩේට් කරන්න"+ newzel })
+        await message.client.sendMessage(message.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: Lang.NEW_UPDATE +'\n\n'+ newzel })
     
       
     }
