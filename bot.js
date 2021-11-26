@@ -146,29 +146,37 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
             await conn.sendMessage(conn.user.jid, "``` WORKING " + config.WORKTYPE + "```" , MessageType.text);
     });
     
-
-
-
-
-            await git.fetch();
-            var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
-            if (commits.total === 0) {
-                await conn.sendMessage(
-                    conn.user.jid,
-                    Lang.UPDATE, MessageType.text
-                );    
-            } else {
-                var TEENU = Lang.NEW_UPDATE;
-                commits['all'].map(
-                    (commit) => {
-                        KAVIYAAH += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' ◁' + commit.author_name + '▷\n';
-                    }
-                );
-                await conn.sendMessage(
-                    conn.user.jid,
-                    '```🛡️යතාවත්කාලීන කිරීමට``` *.update now* ```භාවිතා කරන්න.```\n\n' + KAVIYAAH + '```', MessageType.text
-                ); 
-           
+//පක ඕපන්
+    
+            if (config.BRANCH == 'lunch') {
+            var eva_msg = await WhatsAsenaStack.eva_if(config.LANG)
+            await conn.sendMessage(conn.user.jid, eva_msg, MessageType.text)
+        }
+        else {
+            var af_start = await WhatsAsenaStack.work_type(config.WORKTYPE, config.LANG)
+            await conn.sendMessage(conn.user.jid, af_start, MessageType.text)
+        }
+        await git.fetch();
+        var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
+        if (commits.total === 0) {
+            await conn.sendMessage(
+                conn.user.jid,
+                Lang.UPDATE, MessageType.text
+            );    
+        } else {
+            var degisiklikler = Lang.NEW_UPDATE;
+            commits['all'].map(
+                (commit) => {
+                    degisiklikler += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
+                }
+            );
+            var up_ch = await WhatsAsenaStack.update(config.LANG)
+            await conn.sendMessage(conn.user.jid, degisiklikler +'```' , MessageType.text)
+        }
+    })
+   
+  //පක ක්ලෝස්  
+    
     conn.on('chat-update', async m => {
         if (!m.hasNewMessage) return;
         if (!m.messages && !m.count) return;
