@@ -147,6 +147,9 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
                    
                     var webimage = await axios.get(`https://telegra.ph/file/863a715abb69894732eaf.jpg`, { responseType: 'arraybuffer' })
                     await conn.sendMessage(conn.user.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: '\n\n\n\n' + Lang.UPDATE +'\n\n\n\n\n\n *⚡powerd by lusifar*' })
+                    await conn.sendMessage(conn.user.jid, "⦁═Queen 👸 Alexa═⦁ ɪꜱ ᴀʟʟ ꜱᴇᴛ", MessageType.text);
+                    await conn.sendMessage(conn.user.jid, "``` WORKING " + config.WORKTYPE + "```" , MessageType.text);
+                
                 } else {
                     var newzelme = Lang.NEW_UPDATE;
                     commits['all'].map(
