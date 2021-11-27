@@ -138,16 +138,15 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
 
         console.log(
             chalk.green.bold('⦁═Queen 👸 Alexa═⦁ 𝚠𝚘𝚛𝚔𝚒𝚗𝚐 ' + config.WORKTYPE + ' 𝚗𝚘𝚠 👻'));
-            await conn.sendMessage(conn.user.jid, "⦁═Queen 👸 Alexa═⦁ ɪꜱ ᴀʟʟ ꜱᴇᴛ", MessageType.text);
-            await conn.sendMessage(conn.user.jid, "``` WORKING " + config.WORKTYPE + "```" , MessageType.text);
+
     
             if (config.LANG == 'EN' || config.LANG == 'SI') {
                 await git.fetch();
                 var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
                 if (commits.total === 0) {
-                    await conn.sendMessage(conn.user.jid,Lang.UPDATE, MessageType.text);  
+                   
                     var webimage = await axios.get(`https://telegra.ph/file/863a715abb69894732eaf.jpg`, { responseType: 'arraybuffer' })
-                    await conn.sendMessage(conn.user.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: Lang.UPDATE +'\n\n\n\n\n\n\n\n\n\n *⚡powerd by lusifar*' })
+                    await conn.sendMessage(conn.user.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: '\n\n\n\n' Lang.UPDATE +'\n\n\n\n\n\n *⚡powerd by lusifar*' })
                 } else {
                     var newzelme = Lang.NEW_UPDATE;
                     commits['all'].map(
@@ -158,7 +157,9 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
                   
                     var webimage = await axios.get(`https://telegra.ph/file/863a715abb69894732eaf.jpg`, { responseType: 'arraybuffer' })
                     await conn.sendMessage(conn.user.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: newzelme + '```'+'\n\n *⚡powerd by lusifar*' })
-                    await conn.sendMessage(conn.user.jid, '```type``` *.update now* ```to update```\n\n' + newzelme + '```', MessageType.text); 
+
+                            await conn.sendMessage(conn.user.jid, "⦁═Queen 👸 Alexa═⦁ ɪꜱ ᴀʟʟ ꜱᴇᴛ", MessageType.text);
+                            await conn.sendMessage(conn.user.jid, "``` WORKING " + config.WORKTYPE + "```" , MessageType.text);
                 } 
           }
 
