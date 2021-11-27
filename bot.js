@@ -1,7 +1,7 @@
 
 /* Copyright (C) 2020 Kavishka Sandaruwan
 RECODDED BY KAVISHKA
-*/
+
 
 const os = require("os");
 const fs = require("fs");
@@ -15,7 +15,28 @@ const { DataTypes } = require('sequelize');
 const { GreetingsDB, getMessage } = require("./plugins/sql/greetings");
 const got = require('got');
 const axios = require('axios');
-
+*/
+const fs = require("fs");
+const os = require("os");
+const path = require("path");
+const Heroku = require('heroku-client');
+const events = require("./events");
+const chalk = require('chalk');
+const config = require('./config');
+const simpleGit = require('simple-git');
+const git = simpleGit();
+const {WAConnection, MessageOptions, MessageType, Mimetype, Presence} = require('@adiwajshing/baileys');
+const {Message, StringSession, Image, Video} = require('./QueenAlexa/');
+const { DataTypes } = require('sequelize');
+const { getMessage } = require("./plugins/sql/greetings");
+const axios = require('axios');
+const got = require('got');
+const heroku = new Heroku({
+    token: config.HEROKU.API_KEY
+});
+let baseURI = '/apps/' + config.HEROKU.APP_NAME;
+const Language = require('./language');
+const Lang = Language.getString('updater');
 // Sql
 const WhatsAsenaDB = config.DATABASE.define('WhatsAsena', {
     info: {
