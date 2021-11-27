@@ -1,9 +1,6 @@
-/* Copyright (C) 2020 Yusuf Usta.
 
-Licensed under the  GPL-3.0 License;
-you may not use this file except in compliance with the License.
-
-WhatsAsena - Yusuf Usta
+/* Copyright (C) 2020 Kavishka Sandaruwan
+RECODDED BY KAVISHKA
 */
 
 const fs = require("fs");
@@ -43,6 +40,7 @@ fs.readdirSync('./plugins/sql/').forEach(plugin => {
 
 const plugindb = require('./plugins/sql/plugin');
 
+// Yalnızca bir kolaylık. https://stackoverflow.com/questions/4974238/javascript-equivalent-of-pythons-format-function //
 String.prototype.format = function () {
     var i = 0, args = arguments;
     return this.replace(/{}/g, function () {
@@ -74,6 +72,7 @@ async function whatsAsena () {
     
     
     const conn = new WAConnection();
+    conn.version = [2,2140,12];
     const Session = new StringSession();
 
     conn.logger.level = config.DEBUG ? 'debug' : 'warn';
@@ -102,8 +101,7 @@ async function whatsAsena () {
     conn.on('connecting', async () => {
         console.log(`${chalk.green.bold('QUEEN')}${chalk.blue.bold('ALEXA')}
 ${chalk.white.bold('Version:')} ${chalk.red.bold(config.VERSION)}
-
-${chalk.blue.italic('ℹ️ Connecting to WhatsApp...')}`);
+${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
     });
     
 
@@ -129,7 +127,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp...')}`);
         });
 
         console.log(
-            chalk.blueBright.italic('⬇️Installing plugins...')
+            chalk.blueBright.italic('⬇️  Installing plugins...')
         );
 
         fs.readdirSync('./plugins').forEach(plugin => {
@@ -139,33 +137,31 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp...')}`);
         });
 
         console.log(
-            chalk.green.bold('✅ QUEEN ALEXA working!')
-        );
-        await conn.sendMessage(
-            conn.user.jid,
-            '*ALEXA SET ALL*',
-            MessageType.text
-          );
-          if (config.LANG == 'EN' || config.LANG == 'ML') {
-            await git.fetch();
-            var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
-            if (commits.total === 0) {
-                await conn.sendMessage(conn.user.jid,Lang.UPDATE, MessageType.text);    
-            } else {
-                var newzelme = Lang.NEW_UPDATE;
-                commits['all'].map(
-                    (commit) => {
-                        newzelme += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
-                    }
-                );
-                await conn.sendMessage(
-                    conn.user.jid,
-                    '```type``` *.update now* ```to update```\n\n' + newzelme + '```', MessageType.text
-                ); 
-            } 
-      }
-        });
+            chalk.green.bold('⦁═Queen 👸 Alexa═⦁ 𝚠𝚘𝚛𝚔𝚒𝚗𝚐 ' + config.WORKTYPE + ' 𝚗𝚘𝚠 👻'));
+            await conn.sendMessage(conn.user.jid, "⦁═Queen 👸 Alexa═⦁ ɪꜱ ᴀʟʟ ꜱᴇᴛ", MessageType.text);
+            await conn.sendMessage(conn.user.jid, "``` WORKING " + config.WORKTYPE + "```" , MessageType.text);
+    
+            if (config.LANG == 'EN' || config.LANG == 'SI') {
+                await git.fetch();
+                var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
+                if (commits.total === 0) {
+                    await conn.sendMessage(conn.user.jid,Lang.UPDATE, MessageType.text);    
+                } else {
+                    var newzelme = Lang.NEW_UPDATE;
+                    commits['all'].map(
+                        (commit) => {
+                            newzelme += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
+                        }
+                    );
+                    await conn.sendMessage(
+                        conn.user.jid,
+                        '```type``` *.update now* ```to update```\n\n' + newzelme + '```', MessageType.text
+                    ); 
+                } 
+          }
 
+        });
+    
     conn.on('chat-update', async m => {
         if (!m.hasNewMessage) return;
         if (!m.messages && !m.count) return;
@@ -175,6 +171,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp...')}`);
         if (config.NO_ONLINE) {
             await conn.updatePresence(msg.key.remoteJid, Presence.unavailable);
         }
+        
 
         if (msg.messageStubType === 32 || msg.messageStubType === 28) {
 
@@ -218,7 +215,8 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp...')}`);
           }         
             return;                               
     }         
-     events.commands.map(
+
+        events.commands.map(
             async (command) =>  {
                 if (msg.message && msg.message.imageMessage && msg.message.imageMessage.caption) {
                     var text_msg = msg.message.imageMessage.caption;
@@ -232,14 +230,14 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp...')}`);
 
                 if ((command.on !== undefined && (command.on === 'image' || command.on === 'photo')
                     && msg.message && msg.message.imageMessage !== null && 
-                    (command.pattern === undefined || (command.pattern !== undefined && 
-                        command.pattern.test(text_msg)))) || 
+                    (command.pattern === undefined || (command.pattern !== undefined && 
+                        command.pattern.test(text_msg)))) || 
                     (command.pattern !== undefined && command.pattern.test(text_msg)) || 
                     (command.on !== undefined && command.on === 'text' && text_msg) ||
                     // Video
                     (command.on !== undefined && (command.on === 'video')
                     && msg.message && msg.message.videoMessage !== null && 
-                    (command.pattern === undefined || (command.pattern !== undefined && 
+                    (command.pattern === undefined || (command.pattern !== undefined && 
                         command.pattern.test(text_msg))))) {
 
                     let sendMsg = false;
@@ -247,24 +245,25 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp...')}`);
                         
                     if ((config.SUDO !== false && msg.key.fromMe === false && command.fromMe === true &&
                         (msg.participant && config.SUDO.includes(',') ? config.SUDO.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == config.SUDO || config.SUDO.includes(',') ? config.SUDO.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == config.SUDO)
-                    ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
+                    ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
                         if (command.onlyPinned && chat.pin === undefined) return;
                         if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
                         else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
                     }
-                    if ((config.MAHN !== false && msg.key.fromMe === false && command.fromMe === true &&
+                    
+                    else if ((config.MAHN !== false && msg.key.fromMe === false && command.fromMe === true &&
                         (msg.participant && config.MAHN.includes(',') ? config.MAHN.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == config.MAHN || config.MAHN.includes(',') ? config.MAHN.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == config.MAHN)
-                    ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
+                    ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
                         if (command.onlyPinned && chat.pin === undefined) return;
                         if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
                         else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
                     }
-  
+    
                     if (sendMsg) {
                         if (config.SEND_READ && command.on === undefined) {
                             await conn.chatRead(msg.key.remoteJid);
                         }
-                       
+                        
                         var match = text_msg.match(command.pattern);
                         
                         if (command.on !== undefined && (command.on === 'image' || command.on === 'photo' )
@@ -293,7 +292,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp...')}`);
                                     'Gerçekleşen Hata: ' + error + '\n\n'
                                     , MessageType.text);
                             } else {
-                                await conn.sendMessage(conn.user.jid, '__LusifarBOT_☠☠_[error] ' +
+                                await conn.sendMessage(conn.user.jid, '__⦁═Queen 👸 Alexa═⦁_☠☠_[error] ' +
                                     '\n\n*👻 ' + error + '*\n'
                                     , MessageType.text);
                             }
@@ -303,7 +302,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp...')}`);
             }
         )
     });
-
+    
     try {
         await conn.connect();
     } catch {
