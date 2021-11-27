@@ -145,7 +145,9 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
                 await git.fetch();
                 var commits = await git.log([config.BRANCH + '..origin/' + config.BRANCH]);
                 if (commits.total === 0) {
-                    await conn.sendMessage(conn.user.jid,Lang.UPDATE, MessageType.text);    
+                    await conn.sendMessage(conn.user.jid,Lang.UPDATE, MessageType.text);  
+                    var webimage = await axios.get(`https://telegra.ph/file/863a715abb69894732eaf.jpg`, { responseType: 'arraybuffer' })
+                    await conn.sendMessage(conn.user.jid,,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: Lang.UPDATE +'\n\n\n\n\n\n\n\n\n\n *⚡powerd by lusifar*' })
                 } else {
                     var newzelme = Lang.NEW_UPDATE;
                     commits['all'].map(
@@ -153,10 +155,10 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
                             newzelme += '🔸 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' <' + commit.author_name + '>\n';
                         }
                     );
-                    await conn.sendMessage(
-                        conn.user.jid,
-                        '```type``` *.update now* ```to update```\n\n' + newzelme + '```', MessageType.text
-                    ); 
+                  
+                    var webimage = await axios.get(`https://telegra.ph/file/863a715abb69894732eaf.jpg`, { responseType: 'arraybuffer' })
+                    await conn.sendMessage(conn.user.jid,Buffer.from(webimage.data), MessageType.image, {mimetype: Mimetype.jpg  , caption: newzelme + '```'+'\n\n *⚡powerd by lusifar*' })
+                    await conn.sendMessage(conn.user.jid, '```type``` *.update now* ```to update```\n\n' + newzelme + '```', MessageType.text); 
                 } 
           }
 
