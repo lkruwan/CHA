@@ -163,8 +163,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
     //new update fixing test
     
     
-    
-            if (config.WORKTYPE == 'public') {
+         if (config.WORKTYPE == 'public') {
             if (config.LANG == 'SI' || config.LANG == 'AZ') {
                 if (config.BRANCH == 'true') {
                     await conn.sendMessage(conn.user.jid, EVA_ACTİON, MessageType.text)
@@ -273,73 +272,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please wait.')}`);
                 }
             }
         }
-        else if (config.WORKTYPE == ' private' || config.WORKTYPE == 'Private' || config.WORKTYPE == ' Private' || config.WORKTYPE == 'privaye' || config.WORKTYPE == ' privaye' || config.WORKTYPE == ' prigate' || config.WORKTYPE == 'prigate' || config.WORKTYPE == 'priavte' || config.WORKTYPE == ' priavte' || config.WORKTYPE == 'PRİVATE' || config.WORKTYPE == ' PRİVATE' || config.WORKTYPE == 'PRIVATE' || config.WORKTYPE == ' PRIVATE') {
-
-            if (config.LANG == 'SI' || config.LANG == 'AZ') {
-
-                await conn.sendMessage(
-                    conn.user.jid,
-                    '_ඔබට පෞද්ගලික මාදිලියට මාරුවීමට අවශ්ය බව පෙනේ!_ *WORK_TYPE* \n_කණගාටු නොවන්න! මම ඔබ වෙනුවෙන් සත්යය සොයා ගැනීමට උත්සාහ කරමි..._', MessageType.text
-                );
-                await heroku.patch(baseURI + '/config-vars', {
-                    body: {
-                        ['WORK_TYPE']: 'private'
-                    }
-                })
-            }
-            else {
-                await conn.sendMessage(
-                    conn.user.jid,
-                    '_Looks like you need to switch to general mode! _ * WORK_TYPE * \ n_Dont worry! I try to find the truth for you._', MessageType.text
-                );
-                await heroku.patch(baseURI + '/config-vars', {
-                    body: {
-                        ['WORK_TYPE']: 'private'
-                    }
-                })
-            }
-        }
-        else if (config.WORKTYPE == ' public' || config.WORKTYPE == 'Public' || config.WORKTYPE == ' Public' || config.WORKTYPE == 'publoc' || config.WORKTYPE == ' Publoc' || config.WORKTYPE == 'pubcli' || config.WORKTYPE == ' pubcli' || config.WORKTYPE == 'PUBLİC' || config.WORKTYPE == ' PUBLİC' || config.WORKTYPE == 'PUBLIC' || config.WORKTYPE == ' PUBLIC' || config.WORKTYPE == 'puvlic' || config.WORKTYPE == ' puvlic' || config.WORKTYPE == 'Puvlic' || config.WORKTYPE == ' Puvlic') {
-            if (config.LANG == 'SI' || config.LANG == 'AZ') {
-                await conn.sendMessage(
-                    conn.user.jid,
-                    '__ඔබට පොදු මාදිලියට මාරුවීමට අවශ්ය බව පෙනේ!_ *WORK_TYPE* \n_කණගාටු නොවන්න! මම ඔබ වෙනුවෙන් සත්යය සොයා ගැනීමට උත්සාහ කරමි...__', MessageType.text
-                );
-                await heroku.patch(baseURI + '/config-vars', {
-                    body: {
-                        ['WORK_TYPE']: 'public'
-                    }
-                })
-            }
-            else {
-                await conn.sendMessage(
-                    conn.user.jid,
-                    '_Looks like you need to switch to public mode! _ * WORK_TYPE * \ n_Dont worry! I try to find the truth for you._', MessageType.text
-                );
-                await heroku.patch(baseURI + '/config-vars', {
-                    body: {
-                        ['WORK_TYPE']: 'public'
-                    }
-                })
-            }
-        }
-        else {
-            if (config.LANG == 'SI' || config.LANG == 'AZ') {
-                return await conn.sendMessage(
-                    conn.user.jid,
-                    '_මෙම_ *WORK_TYPE* _විධාන භාවිතය වැරදියි!_ \n_කරුණාකර මෙය භාවිතා කරන්න_ ```.setvar WORK_TYPE:private``` _හෝ_ ```.setvar WORK_TYPE:public```', MessageType.text
-                );
-            }
-            else {
-                return await conn.sendMessage(
-                    conn.user.jid,
-                    'Wrong WORK_TYPE key! Please use “private” or “public', MessageType.text
-                );
-            }
-        }
-    })
-    
-    
+   
     
     
     //new update fixing test
